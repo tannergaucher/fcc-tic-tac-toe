@@ -74,3 +74,7 @@ h1 {
   /* Non-prefixed version, currently
   supported by Chrome and Opera */
 }
+
+.hidden {
+  visibility: hidden;
+}

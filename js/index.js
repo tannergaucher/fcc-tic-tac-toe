@@ -1,8 +1,8 @@
 let turn = 0;
 let x = [];
 let o = [];
-let mode;
-let opponent;
+let level = "easy";
+let player = "human";
 let wins = [
   [1, 2, 3],
   [4, 5, 6],
@@ -65,20 +65,52 @@ function checkWin(player) {
   })
 }
 
-function setMode() {
-  document.addEventListener("click", function(e) {
-    if (e.target.id === "easy") {
-      mode = "easy";
-    } else if (e.target.id === "medium") {
-      mode = "medium";
-    } else if (e.target.id === "hard") {
-      mode = "hard";
-    }
-  })
+function displayMode() {
+  document.getElementById("mode").classList.toggle("hidden");
+  console.log("checked for mode");
 }
-setMode();
+displayMode();
 
-function setOpponent() {
+function mapBoard() {
 
 }
-setOpponent();
+
+
+
+function easy() {
+  if (player === "machine" && level === "easy") {
+
+
+
+  }
+}
+
+
+
+
+
+document.addEventListener("click", function setPlayer(e) {
+  if (e.target.id === "human") {
+    player = "human";
+
+  } else if (e.target.id === "machine") {
+    player = "machine";
+  }
+  console.log(player);
+})
+document.addEventListener("click", function setMode(e) {
+  if (e.target.id === "easy") {
+    mode = "easy";
+    console.log(mode);
+  } else if (e.target.id === "medium") {
+    mode = "medium";
+    console.log(mode);
+  } else if (e.target.id === "hard") {
+    mode = "hard";
+    console.log(mode);
+
+  }
+})
+document.getElementById("player").addEventListener("click", function() {
+  displayMode();
+})
