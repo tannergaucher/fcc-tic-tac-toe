@@ -2,6 +2,7 @@ let turn = 0;
 let x = [];
 let o = [];
 let mode;
+let opponent;
 let wins = [
   [1, 2, 3],
   [4, 5, 6],

@@ -16,17 +16,30 @@
 
   <div class="scoreboard kontainer">
 
-    <div class="dropdown">
-      <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Mode
-        </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item mode" id="easy">Easy</a>
-        <a class="dropdown-item mode" id="medium">Medium</a>
-        <a class="dropdown-item mode" id="hard">Hard</a>
-      </div>
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <label id="human" class="btn btn-outline-light active">
+        <input type="radio" name="options" id="option1" autocomplete="off" checked> 
+        Human
+      </label>
+      <label id="machine" class="btn btn-outline-light">
+        <input type="radio" name="options" id="option2" autocomplete="off"> 
+        Machine
+      </label>
     </div>
 
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <label id="easy" class="btn btn-outline-light active">
+        <input type="radio" name="options" id="option1" autocomplete="off" checked> 
+        Easy
+      </label>
+      <label id="medium" class="btn btn-outline-light">
+        <input type="radio" name="options" id="option2" autocomplete="off"> 
+        Medium
+      </label>
+      <label id="hard" class="btn btn-outline-light">
+        <input type="radio" name="options" id="option2" autocomplete="off"> Hard
+      </label>
+    </div>
 
     <input id="x-input" class="x" type="text" value="x" readonly>
     <input id="o-input" class="o no-turn" type="text" value="o" readonly>
