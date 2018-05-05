@@ -63,3 +63,21 @@ function checkWin(player) {
     }
   })
 }
+
+function setMode() {
+  document.addEventListener("click", function(e) {
+    if (e.target.id === "easy") {
+      mode = "easy";
+    } else if (e.target.id === "medium") {
+      mode = "medium";
+    } else if (e.target.id === "hard") {
+      mode = "hard";
+    }
+  })
+}
+setMode();
+
+function setOpponent() {
+
+}
+setOpponent();
