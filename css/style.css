@@ -1,0 +1,76 @@
+.kontainer {
+  display: flex;
+  width: 500px;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.scoreboard {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 4px;
+}
+
+.board {
+  height: 500px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 8px;
+  padding: 8px;
+  background: rgba(0, 0, 0, .03);
+  border-radius: 3px;
+  justify-content: space-between;
+}
+
+.x {
+  grid-row: 2 / span 1;
+  grid-column: 2 / span 2;
+  text-align: center;
+  align-items: baseline;
+}
+
+.o {
+  grid-row: 2 / span 1;
+  text-align: center;
+  align-items: baseline;
+}
+
+.no-turn {
+  opacity: .3
+}
+
+.board>div {
+  border: 2px solid rgba(0, 0, 0, .08);
+  text-align: center;
+  align-items: center;
+  border-radius: 3px;
+  display: grid;
+  font-size: 40px;
+}
+
+button {
+  width: 100px;
+  border-radius: 1px !important;
+}
+
+h1 {
+  margin: auto;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+  supported by Chrome and Opera */
+}
