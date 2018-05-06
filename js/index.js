@@ -16,6 +16,8 @@ let wins = [
   [3, 5, 7]
 ];
 
+let delay;
+
 function click() {
   board.addEventListener("click", function(e) {
     let clicked = e.target;
@@ -54,22 +56,21 @@ function checkWin(player) {
 }
 
 function getFree() {
-  //remove number from free array if it is found in taken
   taken.forEach(function(number) {
     let index = free.indexOf(number);
     if (index > -1) {
       free.splice(index, 1);
     }
   })
-  //console.log("free", free);
 }
 board.addEventListener("click", getFree);
+
 let easy = function() {
   var rand = free[Math.floor(Math.random() * free.length)];
 
   if (turn % 2 !== 0) {
     board.classList.add('no-click');
-    setTimeout(function() {
+    let delay = setTimeout(function() {
       move("o", rand)
       board.classList.remove('no-click');
     }, 1200);
@@ -80,6 +81,7 @@ easy();
 board.addEventListener("click", easy);
 
 function clearBoard() {
+  window.clearInterval(delay);
   for (let i = 0; i < 10; i++) {
     if (board.children[i] !== undefined) {
       board.children[i].innerHTML = "";
