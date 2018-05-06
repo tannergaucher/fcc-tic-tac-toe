@@ -1,8 +1,10 @@
+let board = document.getElementById("board");
 let turn = 0;
+let free = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+let taken = [];
 let x = [];
 let o = [];
-let level = "easy";
-let player = "human";
+let mode;
 let wins = [
   [1, 2, 3],
   [4, 5, 6],
@@ -14,27 +16,21 @@ let wins = [
   [3, 5, 7]
 ];
 
-let xInput = document.getElementById("x-input");
-let oInput = document.getElementById("o-input");
-let board = document.getElementById("board");
-
-
-function click(player, square) {
+function click() {
   board.addEventListener("click", function(e) {
     let clicked = e.target;
-
-    xInput.classList.toggle("no-turn");
-    oInput.classList.toggle("no-turn");
-
     if (clicked.innerHTML === "" && turn % 2 === 0) {
       clicked.innerHTML = "x";
       x.push(Number(clicked.className));
+      taken.push(Number(clicked.className))
       checkWin(x);
+      console.log("turn", turn);
       turn += 1;
 
     } else if (clicked.innerHTML === "") {
       clicked.innerHTML = "o";
       o.push(Number(clicked.className));
+      taken.push(Number(clicked.className));
       checkWin(o);
       turn += 1;
     }
@@ -44,73 +40,82 @@ click();
 
 function move(player, square) {
   document.getElementById(square).innerHTML = player;
-  if (player === "x") {
-    x.push(square);
-    checkWin(x);
-    turn++
-  } else if (player === "o") {
-    o.push(square);
-    checkWin(o);
-    turn++
-  }
+  console.log("turn", turn);
+  turn++;
 }
 
 function checkWin(player) {
   wins.forEach(function(win) {
     if (player.includes(win[0]) && player.includes(win[1]) && player.includes(win[2])) {
       alert("win");
-    } else {
-      console.log("still checking")
+      clearBoard();
     }
   })
 }
 
-function displayMode() {
-  document.getElementById("mode").classList.toggle("hidden");
-  console.log("checked for mode");
+function getFree() {
+  //remove number from free array if it is found in taken
+  taken.forEach(function(number) {
+    let index = free.indexOf(number);
+    if (index > -1) {
+      free.splice(index, 1);
+    }
+  })
+  //console.log("free", free);
 }
-displayMode();
+board.addEventListener("click", getFree);
+let easy = function() {
+  var rand = free[Math.floor(Math.random() * free.length)];
 
-function mapBoard() {
-
+  if (turn % 2 !== 0) {
+    board.classList.add('no-click');
+    setTimeout(function() {
+      move("o", rand)
+      board.classList.remove('no-click');
+    }, 1200);
+    taken.push(rand);
+  }
 }
+easy();
+board.addEventListener("click", easy);
 
-
-
-function easy() {
-  if (player === "machine" && level === "easy") {
-
-
-
+function clearBoard() {
+  for (let i = 0; i < 10; i++) {
+    if (board.children[i] !== undefined) {
+      board.children[i].innerHTML = "";
+    }
   }
 }
 
+function setOpponent() {
+  let h = document.getElementById("human");
+  let m = document.getElementById("machine");
+  h.addEventListener("click", function() {
+    opponent = "human";
+    console.log(opponent)
+  })
+  m.addEventListener("click", function() {
+    opponent = "machine";
+    console.log(opponent)
+  })
+}
+setOpponent();
 
-
-
-
-document.addEventListener("click", function setPlayer(e) {
-  if (e.target.id === "human") {
-    player = "human";
-
-  } else if (e.target.id === "machine") {
-    player = "machine";
-  }
-  console.log(player);
-})
-document.addEventListener("click", function setMode(e) {
-  if (e.target.id === "easy") {
+function setMode() {
+  let e = document.getElementById("easy");
+  let m = document.getElementById("medium");
+  let h = document.getElementById("hard");
+  e.addEventListener("click", function() {
     mode = "easy";
     console.log(mode);
-  } else if (e.target.id === "medium") {
+  })
+  m.addEventListener("click", function() {
     mode = "medium";
     console.log(mode);
-  } else if (e.target.id === "hard") {
+  })
+  h.addEventListener("click", function() {
     mode = "hard";
     console.log(mode);
-
-  }
-})
-document.getElementById("player").addEventListener("click", function() {
-  displayMode();
-})
+  })
+}
+setMode();

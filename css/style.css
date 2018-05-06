@@ -59,6 +59,10 @@ h1 {
   margin: auto;
 }
 
+.no-click {
+  pointer-events: none;
+}
+
 .noselect {
   -webkit-touch-callout: none;
   /* iOS Safari */
